@@ -1,0 +1,170 @@
+/*index.html stuff*/
+.header {
+    background: linear-gradient(135deg, #1a3c34, #04AA6D);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+.header h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 18px;
+    opacity: 0.85;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+
+/* --- Semester GPA Specific Styles --- */
+
+.course-row {
+    margin-bottom: 7px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.course-row:last-child {
+    border-bottom: none;
+}
+
+/* The red Remove button */
+.remove-btn {
+    width: 100%;
+    padding: 5px;
+    background-color: #dc3545; /* Red color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    /* Aligns height with the inputs */
+    height: 46px; 
+    margin-bottom: 4px;
+}
+
+.remove-btn:hover {
+    background-color: #bb2d3b;
+}
+/* The dashed Add Course button */
+.add-course-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: transparent;
+    border: 2px dashed #ccc;
+    color: #333;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+.add-course-btn:hover {
+    background-color: #f8f9fa;
+    border-color: #aaa;
+}
+#semesterResult {
+    font-size: 36px;
+    font-weight: bold;
+    color: #04AA6D;
+    margin: 0px;
+}
+
+
+/* cumulativeGPA stuff */
+.cumulativeBody {
+    font-family: Arial;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 40px 20px;
+    flex-grow: 1;
+}
+.cumulativecontainer {
+    max-width: 550px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+.grayText {
+    font-family: Arial; 
+    font-size: 15px;
+    color: #808080;
+}
+.boldinTable {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.inputclass {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(209, 213, 219);
+    border-radius: 5px;
+    margin-bottom: 4px;
+}
+.calculateButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #04AA6D;
+    color: white; /*text color*/
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 7px;
+}
+.divv {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ECFDF5;
+    color: #064E3B;
+    border: 1px solid #6EE7B7;
+    border-radius: 8px;
+    text-align: center;
+}
+#cumulativeResult {
+    font-size: 36px;
+    font-weight: bold;
+    color: #04AA6D;
+    margin: 0px;
+}
+
+
+/* gradestable css */
+table {
+  font-family: Arial;
+  border-collapse: collapse;
+  width: 80%;
+  margin-bottom: 26px;
+  margin-left: auto;         
+  margin-right: auto;        /*this and the one before it center the table */
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;} /* Colors every even row (2nd, 4th, 6th) light gray */
+
+tr:hover {background-color: #ddd;}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+h2 {
+    text-align: center;
+}
+
+
+
