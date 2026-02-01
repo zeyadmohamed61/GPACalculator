@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Semester GPA Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">   
+  </head>
+  <body style = "display: flex;flex-direction: column;min-height: 100vh;">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">GPA Calculator</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="semestergpa.html">Semester GPA</a></li>
+              <li class="nav-item"><a class="nav-link" href="cumulativegpa.html">Cumulative GPA</a></li>
+              <li class="nav-item"><a class="nav-link" href="gradestable.html">Grades Table</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="cumulativeBody">
+            <div class = "cumulativecontainer"  style = "margin-bottom: 50px;">
+                <h4 style="font-weight: bold;">Semester GPA Calculator</h4>
+                <p class = "grayText">Enter credit hours and grades for every course</p>
+                <div id="course-list">
+                </div>
+                <button id="addCourseBtn" class="add-course-btn">+ Add Course</button>
+                <button id ="calculateSemesterBtn" class = "calculateButton">Submit</button>
+                    <div class = "divv" >
+                        <p>Your Cumulative GPA is</p>
+                        <p id ="semesterResult"></p>
+                    </div>
+            </div>
+      </div>
+
+      <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; This is CS50 </p>
+      </footer>
+
+    <script>
+        const gradeValues = {
+            "A+": 4.0, "A": 4.0, "A-": 3.7,
+            "B+": 3.3, "B": 3.0, "B-": 2.7,
+            "C+": 2.3, "C": 2.0, "C-": 1.7,
+            "D+": 1.3, "D": 1.0, "F": 0.0
+        };
+        // Function to create the HTML for a single course row
+        function createCourseRow() {
+            const div = document.createElement('div');
+            div.className = 'course-row';
+            div.innerHTML = `
+                <div class="row g-2 align-items-end">
+                    <div class="col-5">
+                        <p class="boldinTable">Credit Hours</p>
+                        <input type="number" class="inputclass course-credits" min="1">
+                    </div>
+                    <div class="col-5">
+                        <p class="boldinTable">Grade</p>
+                        <select class="inputclass course-grade">
+                            <option value="" selected disabled>Select</option>
+                            ${Object.keys(gradeValues).map(g => `<option value="${gradeValues[g]}">${g} (${gradeValues[g]})</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <button class="remove-btn" onclick="removeCourse(this)">Remove</button>
+                    </div>
+                </div>`;
+            return div;
+        }
+        
+        // Add initial row on load
+        document.getElementById('course-list').appendChild(createCourseRow());
+
+        // Add Course Button Logic
+        document.getElementById('addCourseBtn').onclick = function() {
+            document.getElementById('course-list').appendChild(createCourseRow());
+        };
+
+        // Remove Course Logic
+        window.removeCourse = function(btn) {
+            // Prevent removing the last row if you want to keep at least one, 
+            // otherwise just remove the closest .course-row parent
+            btn.closest('.course-row').remove();
+        };
+
+        // Calculate Logic
+        document.getElementById('calculateSemesterBtn').onclick = function() {
+            let totalPoints = 0;
+            let totalCredits = 0;
+            
+            const creditsInputs = document.querySelectorAll('.course-credits');
+            const gradeInputs = document.querySelectorAll('.course-grade');
+
+            for (let i = 0; i < creditsInputs.length; i++) {
+                const credits = Number(creditsInputs[i].value);
+                const gradePoint = Number(gradeInputs[i].value);
+
+                // Only calculate if both inputs are valid
+                if (creditsInputs[i].value && gradeInputs[i].value !== "") {
+                    totalPoints += (credits * gradePoint);
+                    totalCredits += credits;
+                }
+            }
+
+            const resultText = document.getElementById('semesterResult');
+
+            if (totalCredits > 0) {
+                const gpa = totalPoints / totalCredits;
+                resultText.innerHTML = gpa.toFixed(2);
+            } else {
+                alert("Please Enter all info correctly before submitting");
+            }
+        };        
+    </script>
+  </body>
+</html>
